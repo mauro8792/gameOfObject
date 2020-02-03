@@ -22,7 +22,7 @@ var Juego = {
     de ejemplo, pero podras agregar muchos mas. */
     new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 2),
     new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 2),
-    new Obstaculo('imagenes/auto_verde_derecha.png', 500, 250, 30, 30, 3),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 500, 250, 30, 15, 3),
     new Obstaculo('imagenes/bache.png', 230, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 500, 85, 20, 20, 1),
 
@@ -52,12 +52,15 @@ var Juego = {
   enemigos: [
     
     
-    new ZombieConductor('imagenes/tren_horizontal.png', 400, 324, 90, 30, 1, {desdeX: 20, hastaX: 850, desdeY: 20, hastaY: 557}, 'h'),
-    new ZombieConductor('imagenes/tren_vertical.png', 644, 53, 30, 90, 1, {desdeX: 20, hastaX: 930, desdeY:20, hastaY: 480}, 'v'),
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 324, 90, 30, 15, {desdeX: 20, hastaX: 850, desdeY: 20, hastaY: 557}, 'h'),
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 53, 30, 90, 10, {desdeX: 20, hastaX: 930, desdeY:20, hastaY: 480}, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png', 678, 53, 30, 90, 15, {desdeX: 20, hastaX: 930, desdeY: 20, hastaY: 480}, 'v'),
     
      
     new ZombieCaminante('imagenes/zombie2.png',120,220,10,10,1,{desdeX: 70, hastaX: 180, desdeY: 20, hastaY: 557}),
     new ZombieCaminante('imagenes/zombie1.png', 300,200, 10, 10, 1, {desdeX: 280, hastaX: 600, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 800,180, 10, 10, 2, {desdeX: 750, hastaX: 900, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 500,900, 10, 10, 1, {desdeX: 280, hastaX: 600, desdeY: 20, hastaY: 557}),
     
     
     
@@ -134,19 +137,27 @@ Juego.capturarMovimiento = function(tecla) {
   if (tecla == 'izq') {
     movX = -velocidad;
     this.jugador.sprite = 'imagenes/auto_rojo_izquierda.png'
+    this.jugador.ancho = 30;
+    this.jugador.alto =15;
 
   }
   if (tecla == 'arriba') {
     movY = -velocidad;
     this.jugador.sprite = 'imagenes/auto_rojo_arriba.png'
+    this.jugador.ancho = 15;
+    this.jugador.alto =30;
   }
   if (tecla == 'der') {
     movX = velocidad;
     this.jugador.sprite = 'imagenes/auto_rojo_derecha.png'
+    this.jugador.ancho = 30;
+    this.jugador.alto =15;
   }
   if (tecla == 'abajo') {
     movY = velocidad;
     this.jugador.sprite = 'imagenes/auto_rojo_abajo.png'
+    this.jugador.ancho = 15;
+    this.jugador.alto =30;
   }
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
