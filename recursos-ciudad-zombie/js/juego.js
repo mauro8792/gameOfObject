@@ -51,7 +51,9 @@ var Juego = {
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
     
-    //new ZombieConductor('imagenes/tren_horizontal.png',70,315,180,52,4,)
+    
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 324, 90, 30, 1, {desdeX: 20, hastaX: 850, desdeY: 20, hastaY: 557}, 'h'),
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 53, 30, 90, 1, {desdeX: 20, hastaX: 930, desdeY:20, hastaY: 480}, 'v'),
     
      
     new ZombieCaminante('imagenes/zombie2.png',120,220,10,10,1,{desdeX: 70, hastaX: 180, desdeY: 20, hastaY: 557}),
@@ -237,7 +239,7 @@ Juego.chequearColisiones = function(x, y) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
       this.jugador.perderVidas(obstaculo.potencia)
       obstaculo.potencia = 0 
-      /*COMPLETAR, obstaculo debe chocar al jugador*/
+        /*COMPLETAR, obstaculo debe chocar al jugador*/
 
       puedeMoverse = false
     }
