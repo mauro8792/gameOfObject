@@ -45,9 +45,21 @@ var Juego = {
     new Obstaculo('', 196, 23, 83, 244, 2),
     new Obstaculo('', 279, 23, 664, 56, 2),
     new Obstaculo('', 887, 79, 56, 480, 2)
+    // sobre la carretera
+    
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
+    
+    //new ZombieConductor('imagenes/tren_horizontal.png',70,315,180,52,4,)
+    
+     
+    new ZombieCaminante('imagenes/zombie2.png',120,220,10,10,1,{desdeX: 70, hastaX: 180, desdeY: 20, hastaY: 557}),
+    new ZombieCaminante('imagenes/zombie1.png', 300,200, 10, 10, 1, {desdeX: 280, hastaX: 600, desdeY: 20, hastaY: 557}),
+    
+    
+    
+
 
   ]
 
@@ -149,13 +161,15 @@ Juego.capturarMovimiento = function(tecla) {
 Juego.dibujar = function() {
   // Borrar el fotograma actual
   Dibujante.borrarAreaDeJuego();
+  //Dibujante.dibujarImagen()
+  
+   
+  
   //Se pinta la imagen de fondo segun el estado del juego
   this.dibujarFondo();
-    
-   
-
-
-
+  
+  
+  
   /* Aca hay que agregar la logica para poder dibujar al jugador principal
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
@@ -164,13 +178,13 @@ Juego.dibujar = function() {
 
   Dibujante.dibujarEntidad(this.jugador)
   // Se recorren los obstaculos de la carretera pintandolos
-  this.obstaculosCarretera.forEach(function(obstaculo) {
+  this.obstaculosCarretera.forEach(function(obstaculo) {    
     Dibujante.dibujarEntidad(obstaculo);
   });
 
   // Se recorren los enemigos pintandolos
   this.enemigos.forEach(function(enemigo) {
-    /* Completar */
+    Dibujante.dibujarEntidad(enemigo);
   });
 
   // El dibujante dibuja las vidas del jugador
@@ -178,6 +192,7 @@ Juego.dibujar = function() {
   Dibujante.dibujarRectangulo('white', 0, 0, this.anchoCanvas, 8);
   for (var i = 0; i < this.jugador.vidas; i++) {
     var x = tamanio * i
+    
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
 };
@@ -188,7 +203,10 @@ Juego.dibujar = function() {
 un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function() {
-  /* COMPLETAR */
+  this.enemigos.forEach(enemy => {
+    enemy.mover();
+    
+  });
 };
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador

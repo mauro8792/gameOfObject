@@ -24,4 +24,6 @@ var Jugador = {
        this.vidas-=cant
      }
 
+  
+
 }
