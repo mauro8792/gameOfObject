@@ -11,7 +11,30 @@ var ZombieConductor = function(sprite, x, y, ancho, alto, velocidad, rangoMov, d
 ZombieConductor.prototype = Object.create(Enemigo.prototype);
 ZombieConductor.prototype.constructor = ZombieConductor;
 
-
+ZombieConductor.prototype.mover = function(){
+  if(this.direccion=="h"){
+    if (true) {
+      this.x -= this.velocidad;
+    }
+  
+    if ((this.x < this.rangoMov.desdeX) || (this.x > this.rangoMov.hastaX)){
+      this.velocidad *= -1;
+    }
+    
+  }else{
+    
+    this.y += this.velocidad;
+    
+    // Si sobrepasa el rangoY, lo manda al centro entre ambos rangos
+    if ((this.y < this.rangoMov.desdeY) || (this.y > this.rangoMov.hastaY)) {
+      
+      this.velocidad *=-1;  
+     
+      
+    }
+    
+  }
+}
 
 
 
