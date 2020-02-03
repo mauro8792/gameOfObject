@@ -22,7 +22,10 @@ var Juego = {
     de ejemplo, pero podras agregar muchos mas. */
     new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 2),
     new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 2),
+    new Obstaculo('imagenes/valla_horizontal.png', 850, 150, 30, 30, 2),
     new Obstaculo('imagenes/auto_verde_derecha.png', 500, 250, 30, 30, 3),
+    new Obstaculo('imagenes/bache.png', 850, 430, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 770, 200, 30, 30, 1),
     new Obstaculo('imagenes/bache.png', 230, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 500, 85, 20, 20, 1),
 
