@@ -20,7 +20,11 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
+    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 2),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 2),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 500, 250, 30, 30, 3),
+    new Obstaculo('imagenes/bache.png', 230, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 500, 85, 20, 20, 1),
 
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
@@ -120,28 +124,35 @@ Juego.update = function() {
 // Captura las teclas y si coincide con alguna de las flechas tiene que
 // hacer que el jugador principal se mueva
 Juego.capturarMovimiento = function(tecla) {
-  var movX = 0;
-  var movY = 0;
+  var movX = 0//this.jugador.x;
+  var movY = 0//this.jugador.y;
   var velocidad = this.jugador.velocidad;
 
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_izquierda.png'
+
   }
   if (tecla == 'arriba') {
     movY = -velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_arriba.png'
   }
   if (tecla == 'der') {
     movX = velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_derecha.png'
   }
   if (tecla == 'abajo') {
     movY = velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_abajo.png'
   }
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
   if (this.chequearColisiones(movX + this.jugador.x, movY + this.jugador.y)) {
     /* Aca tiene que estar la logica para mover al jugador invocando alguno
     de sus metodos  */
+    
+    this.jugador.moverse(movX,movY)
 
     /* COMPLETAR */
   }
@@ -163,8 +174,9 @@ Juego.dibujar = function() {
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
 
-  Dibujante.dibujarEntidad(this.jugador);
   
+
+  Dibujante.dibujarEntidad(this.jugador)
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function(obstaculo) {    
     Dibujante.dibujarEntidad(obstaculo);
@@ -221,7 +233,8 @@ Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
-
+      this.jugador.perderVidas(obstaculo.potencia)
+      obstaculo.potencia = 0 
       /*COMPLETAR, obstaculo debe chocar al jugador*/
 
       puedeMoverse = false
